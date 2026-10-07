@@ -50,7 +50,7 @@ int main() {
 	//printf("%s", str);
 	int idx = 0;
 	char* token = strtok(str, "+");
-	
+	int a;
 	while (token != NULL) {
 		arr[idx] = malloc(strlen(token)+1);
 		if (!arr[idx]) { return 1; }
