@@ -139,7 +139,15 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="pl2.c" />
+    <ClCompile Include="backtracking.c" />
+    <ClCompile Include="calc.c" />
+    <ClCompile Include="main.c" />
+    <ClCompile Include="parce.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="backtracking.h" />
+    <ClInclude Include="calc.h" />
+    <ClInclude Include="parce.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
