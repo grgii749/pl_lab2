@@ -5,8 +5,8 @@
 #include <ctype.h>
 #include <stdbool.h>
 
-bool in_string(char* arr,char letter,int size) {
-	for (int i = 0; i < size; i++) {
+bool in_string(char* arr,char letter) {
+	for (int i = 0; arr[i]!='\0'; i++) {
 		if (arr[i] == letter) {
 			return true;
 		}
@@ -68,7 +68,7 @@ int get_uniq_letters(char** arr, int size, char* uniq_letters) {
 			int idx_in_word = len - 1 - digit_idx;
 			if (idx_in_word < 0) { continue; }
 			char c = arr[j][idx_in_word];
-			if (in_string(uniq_letters, c, 10)) {
+			if (in_string(uniq_letters, c)) {
 				continue;
 			}
 			else {

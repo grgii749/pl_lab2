@@ -16,6 +16,8 @@ void print_result(int* summands, int size) {
 	printf("%d", summands[size - 1]);
 
 }
+
+ 
 int check_least(char** words, int words_size, int* digits) {
 	int sum = 0;
 	for (int i = 0; i < words_size-1; i++) {
@@ -33,20 +35,17 @@ int check_least(char** words, int words_size, int* digits) {
 	return 0;
 }
 
-int word_to_digit(char* word,int *digits) {
+
+int word_to_digit(char* word, int* digits) {
 	int res = 0;
-	int idx = 0;
-	for (int i = 0; i < 26; i++) {
-		if (idx < strlen(word)) {
-			char letter = word[idx];
-			if (digits[letter - 'A'] != -1) {
-				idx++;
-				res = res * 10 + digits[letter - 'A'];
-			}
-		}
+	for (int i = 0; word[i] != '\0'; i++) {
+		res = res * 10 + digits[word[i]-'A'];
 	}
 	return res;
 }
+
+
+
 int backtracking(int idx, char* uniq_letters, int uniq_size, char** words, int words_size, int* digits, int* busy_digits, char* first_letters,int *summands) {
 	if (idx == uniq_size) {
 		int result = 0;
@@ -63,11 +62,11 @@ int backtracking(int idx, char* uniq_letters, int uniq_size, char** words, int w
 	}
 	
 	
-	
+	char letter = uniq_letters[idx];
 	for (int i = 0; i < 10; i++) {
-		char letter= uniq_letters[idx];
 		
-		if (in_string(first_letters, letter, 8) && i==0) { continue; }
+		
+		if (in_string(first_letters, letter) && i==0) { continue; }
 		if (busy_digits[i]) { continue; }
 		else {
 			digits[letter - 'A'] = i;;

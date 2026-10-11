@@ -25,17 +25,16 @@ int main(int argc, char** argv) {
 	
 	char uniq_letters[10] = {0};
 	char first_letters[8] = {0};
+	int  last_column[26] = {0};
 	int busy_digits[10];
 	memset(busy_digits, 0, sizeof(busy_digits));
 	int uniq_size;
 	
 	char* str = get_string(f);
-	int j=0;
-	
-	
 	if (!str) {
 		return 1;
 	}
+
 	char** arr = malloc(8 * sizeof(char*));
 	if (arr == NULL) {
 		return 1;
@@ -55,14 +54,20 @@ int main(int argc, char** argv) {
 		}
 
 		strcpy(arr[idx], token);
-		if (!in_string(first_letters, arr[idx][0],8)) { first_letters[first_idx] = arr[idx][0]; first_idx++; }
+		if (!in_string(first_letters, arr[idx][0])) { first_letters[first_idx] = arr[idx][0]; first_idx++; }
 		
 		//printf("%s\n", arr[idx]);
 		idx++;
 		token = strtok(NULL, "+");
 
 	}
-	
+
+	for (int i = 0; i < idx; i++) {
+		int len = strlen(arr[i]);
+		char c = arr[i][len - 1];
+		last_column[c - 'A'] = 1;
+		
+	}
 	char* result = malloc(strlen(arr[idx - 1]) + 1);
 	strcpy(result, arr[idx - 1]);
 	int* summands = malloc(idx * sizeof(int));
