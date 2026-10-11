@@ -58,13 +58,21 @@ char* get_string(FILE *f) {
 
 int get_uniq_letters(char** arr, int size, char* uniq_letters) {
 	int idx = 0;
+	int max_len = 0;
 	for (int i = 0; i < size; i++) {
-		for (int j = 0; j < strlen(arr[i]); j++) {
-			if (in_string(uniq_letters, arr[i][j], 10)) {
+		if (strlen(arr[i]) > max_len) { max_len = strlen(arr[i]); }
+	}
+	for (int digit_idx = 0; digit_idx < size; digit_idx++) {
+		for (int j = 0; j < size; j++) {
+			int len = strlen(arr[j]);
+			int idx_in_word = len - 1 - digit_idx;
+			if (idx_in_word < 0) { continue; }
+			char c = arr[j][idx_in_word];
+			if (in_string(uniq_letters, c, 10)) {
 				continue;
 			}
 			else {
-				uniq_letters[idx] = arr[i][j];
+				uniq_letters[idx] = c;
 				idx++;
 			}
 		}
@@ -76,5 +84,6 @@ int get_uniq_letters(char** arr, int size, char* uniq_letters) {
 	exit(1);
 
 }
+
 
 
