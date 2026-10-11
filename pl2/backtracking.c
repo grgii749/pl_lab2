@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <stdbool.h>
-#include "parce.h"
+#include "parse.h"
 
 void print_result(int* summands, int size) {
 	printf("%d ", summands[0]);

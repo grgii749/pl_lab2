@@ -14,7 +14,7 @@ bool in_string(char* arr,char letter,int size) {
 	return false;
 }
 
-char* get_string() {
+char* get_string(FILE *f) {
 	int ch;
 	int size = 2;
 	int cap = 0;
@@ -23,7 +23,7 @@ char* get_string() {
 		return NULL;
 	}
 
-	while ((ch = getc(stdin)) != '\n' && ch!=EOF) {
+	while ((ch = getc(f)) != '\n' && ch!=EOF) {
 		if (cap >= size) {
 			size *= 2;
 			str = realloc(str, size);
@@ -40,6 +40,10 @@ char* get_string() {
 		
 		
 	}
+	if (cap == 0 && ch == EOF) {
+		free(str);
+		return NULL;
+	}
 	if (cap >= size) {
 		size +=1;
 		str = realloc(str, size);
@@ -52,23 +56,15 @@ char* get_string() {
 	return str;
 }
 
-int get_uniq_letters(char** arr,int size, char* uniq_letters) {
+int get_uniq_letters(char** arr, int size, char* uniq_letters) {
 	int idx = 0;
-	int max_len = 0;
 	for (int i = 0; i < size; i++) {
-		if (strlen(arr[i]) > max_len) { max_len = strlen(arr[i]); }
-	}
-	for (int digit_idx = 0; digit_idx < size; digit_idx++) {
-		for (int j = 0; j < size; j++) {
-			int len = strlen(arr[j]);
-			int idx_in_word = len - 1 - digit_idx;
-			if (idx_in_word < 0) { continue; }
-			char c = arr[j][idx_in_word];
-			if (in_string(uniq_letters,c,10)) {
+		for (int j = 0; j < strlen(arr[i]); j++) {
+			if (in_string(uniq_letters, arr[i][j], 10)) {
 				continue;
 			}
 			else {
-				uniq_letters[idx] = c;
+				uniq_letters[idx] = arr[i][j];
 				idx++;
 			}
 		}
@@ -80,6 +76,5 @@ int get_uniq_letters(char** arr,int size, char* uniq_letters) {
 	exit(1);
 
 }
-
 
 

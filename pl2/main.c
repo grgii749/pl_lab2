@@ -5,11 +5,17 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <time.h>
-#include "parce.h"
+#include "parse.h"
 #include "backtracking.h"
 
-int main() {
-	
+int main(int argc, char** argv) {
+	FILE* f = stdin;
+	if (argc > 1) {
+		f = fopen(argv[1], "r");
+		if (!f) {
+			return 1;
+		}
+	}
 	int idx = 0;
 	int first_idx = 0;
 	int digits[26] ;
@@ -23,7 +29,7 @@ int main() {
 	memset(busy_digits, 0, sizeof(busy_digits));
 	int uniq_size;
 	
-	char* str = get_string();
+	char* str = get_string(f);
 	int j=0;
 	
 	
@@ -82,7 +88,7 @@ int main() {
 	free(arr);
 	free(str);
 
-	
+	if (f != stdin) fclose(f);
 
 	return 0;
 }

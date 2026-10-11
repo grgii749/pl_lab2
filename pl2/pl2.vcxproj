@@ -140,14 +140,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="backtracking.c" />
-    <ClCompile Include="calc.c" />
     <ClCompile Include="main.c" />
-    <ClCompile Include="parce.c" />
+    <ClCompile Include="parse.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="backtracking.h" />
-    <ClInclude Include="calc.h" />
-    <ClInclude Include="parce.h" />
+    <ClInclude Include="parse.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
