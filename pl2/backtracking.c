@@ -16,6 +16,23 @@ void print_result(int* summands, int size) {
 	printf("%d", summands[size - 1]);
 
 }
+int check_least(char** words, int words_size, int* digits) {
+	int sum = 0;
+	for (int i = 0; i < words_size-1; i++) {
+		int len = strlen(words[i]);
+		char c = words[i][len - 1];
+		int digit = digits[c - 'A'];
+		if (digit == -1) { return 1; }
+		sum += digit;
+	}
+	int len = strlen(words[words_size - 1]);
+	char c = words[words_size - 1][len - 1];
+	int digit = digits[c - 'A'];
+	if (digit == -1) { return 1; }
+	if (sum % 10 == digit) { return 1; }
+	return 0;
+}
+
 int word_to_digit(char* word,int *digits) {
 	int res = 0;
 	int idx = 0;
@@ -55,6 +72,11 @@ int backtracking(int idx, char* uniq_letters, int uniq_size, char** words, int w
 		else {
 			digits[letter - 'A'] = i;;
 			busy_digits[i] = 1;
+		}
+		if (!check_least(words, words_size, digits)) {
+			digits[letter - 'A'] = -1;
+			busy_digits[i] = 0;
+			continue;
 		}
 		if (backtracking(idx + 1, uniq_letters, uniq_size, words, words_size, digits, busy_digits, first_letters,summands)) {
 			return 1;
