@@ -46,7 +46,7 @@ int word_to_digit(char* word, int* digits) {
 
 
 
-int backtracking(int idx, char* uniq_letters, int uniq_size, char** words, int words_size, int* digits, int* busy_digits, char* first_letters,int *summands) {
+int backtracking(int idx, char* uniq_letters, int uniq_size, char** words, int words_size, int* digits, int* busy_digits, char* first_letters,int *summands, int *last_column) {
 	if (idx == uniq_size) {
 		int result = 0;
 		for (int i = 0; i < words_size-1; i++) {
@@ -72,12 +72,15 @@ int backtracking(int idx, char* uniq_letters, int uniq_size, char** words, int w
 			digits[letter - 'A'] = i;;
 			busy_digits[i] = 1;
 		}
-		if (!check_least(words, words_size, digits)) {
-			digits[letter - 'A'] = -1;
-			busy_digits[i] = 0;
-			continue;
+		if (last_column[letter - 'A'] == 1) {
+			if (!check_least(words, words_size, digits)) {
+				digits[letter - 'A'] = -1;
+				busy_digits[i] = 0;
+				continue;
+			}
 		}
-		if (backtracking(idx + 1, uniq_letters, uniq_size, words, words_size, digits, busy_digits, first_letters,summands)) {
+		
+		if (backtracking(idx + 1, uniq_letters, uniq_size, words, words_size, digits, busy_digits, first_letters,summands,last_column)) {
 			return 1;
 		}
 		digits[letter - 'A'] = -1;

@@ -72,7 +72,7 @@ int main(int argc, char** argv) {
 	strcpy(result, arr[idx - 1]);
 	int* summands = malloc(idx * sizeof(int));
 	uniq_size=get_uniq_letters(arr, idx, uniq_letters);
-	int success=backtracking(0, uniq_letters, uniq_size, arr, idx, digits, busy_digits, first_letters, summands);
+	int success=backtracking(0, uniq_letters, uniq_size, arr, idx, digits, busy_digits, first_letters, summands,last_column);
 	if (!success) {
 		printf("NO SOLUTIONS");
 	}
