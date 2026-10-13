@@ -62,7 +62,7 @@ int get_uniq_letters(char** arr, int size, char* uniq_letters) {
 	for (int i = 0; i < size; i++) {
 		if (strlen(arr[i]) > max_len) { max_len = strlen(arr[i]); }
 	}
-	for (int digit_idx = 0; digit_idx < size; digit_idx++) {
+	for (int digit_idx = 0; digit_idx < max_len; digit_idx++) {
 		for (int j = 0; j < size; j++) {
 			int len = strlen(arr[j]);
 			int idx_in_word = len - 1 - digit_idx;
