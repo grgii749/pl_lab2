@@ -62,7 +62,7 @@ dkms.conf
 *.VC.db
 *.VC.VC.opendb
 
-# Сборка
+
 Debug/
 Release/
 x64/
@@ -80,7 +80,9 @@ build/
 *.idb
 *.exp
 
-# ОС
+
 Thumbs.db
 Desktop.ini
 .DS_Store
+
+test.txt
